@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require("cors")
 const project = require("./models/project")
+const Ids = require("./models/Ids")
 const mongoose = require("mongoose");
 
 const app = express();
@@ -97,6 +98,28 @@ app.post('/delete', (req, res) => {
   evaluation1()
 
 })
+
+app.post('/userexists', (req, res) => {
+
+  async function evaluation(){
+
+    const exists = await Ids.findOne({id: req.body.code}, {id: 1});
+    
+    if(exists != null){
+
+      res.json({message: "1"});
+
+    }else{
+
+      res.json({message: null});
+
+    }
+
+  }
+
+  evaluation()
+
+});
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

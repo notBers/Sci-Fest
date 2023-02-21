@@ -35,10 +35,7 @@ export const S_i = () => {
         body: form
       })
     }
-
-
-
-  };
+};
 
   const handleUpload = async () => {
 

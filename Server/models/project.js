@@ -1,7 +1,7 @@
 const { Schema, model} = require('mongoose');
 
 
-const Ids = new Schema({
+const projects = new Schema({
     id: String,
     name: String,
     path: String,
@@ -9,4 +9,4 @@ const Ids = new Schema({
     views: String
 })
 
-module.exports = model('Ids', Ids)
+module.exports = model('projects', projects)
