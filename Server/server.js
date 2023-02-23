@@ -6,6 +6,7 @@ const cors = require("cors")
 const project = require("./models/project")
 const Ids = require("./models/Ids")
 const mongoose = require("mongoose");
+const { createCipheriv } = require('crypto');
 
 const app = express();
 
@@ -89,11 +90,9 @@ app.post('/haswork', (req, res) => {
 app.post('/delete', (req, res) => {
 
   async function evaluation1(){
-
     const exists = await project.deleteOne({id: req.body.id})
     console.log(exists + " was deleted")
-
-  }
+}
 
   evaluation1()
 
@@ -115,6 +114,36 @@ app.post('/userexists', (req, res) => {
 
     }
 
+  }
+
+  evaluation()
+
+});
+
+app.post('/download', (req, res) => {
+  const evaluation = async () => {
+    try{
+      const files = await project.find({})
+      res.download(files[req.body.num].path);
+    }catch{
+      res.json({message: "Index out of range"})
+    }
+  }
+
+  evaluation()
+
+});
+
+app.post('/projectinfo', (req, res) => {
+  const evaluation = async () => {
+    
+    try{
+      const files = await project.find({})
+      res.json({user: files[req.body.num].id, name: files[req.body.num].name, views: files[req.body.num].views});
+    }catch(err){
+      console.log(err)
+      res.json({message: "Index out of range"})
+    }
   }
 
   evaluation()

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import "./login.css";
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -30,12 +29,12 @@ export const Login = () => {
     }
 
     return(
-        <>
+        <div className='boy'>
         <form id="idform" onSubmit={handleUpload}>
             <input className='idmaker' type="text" placeholder='Write your id' onChange={(e) => setId(e.target.value)} maxLength="10"/>
             <input className='idupload' type="submit" value="submit" />
         </form>
-        </>
+        </div>
     )
 
 }

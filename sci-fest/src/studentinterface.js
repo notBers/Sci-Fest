@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import "./pdfcss.css"
 import { Link } from 'react-router-dom';
 import Logo from "./logoitj.jpg"
+import { useLocation } from 'react-router-dom'
 
 export const S_i = () => {
   const [file, setFile] = useState(null);
   const [name, setName] = useState(null);
   const [exist, setExist] = useState(null);
+  const location = useLocation()
 
   const handleDrop = (event) => {
     event.preventDefault();
@@ -66,9 +68,12 @@ export const S_i = () => {
     alert('could not verify if you had previous project')
     return
   }
-      
+
+  const paths = location.pathname.split('/'); // Split the pathname by '/'
+  const lastPath = paths[paths.length - 1]; 
+  
   const formData = new FormData();
-  formData.append('id', '2444')
+  formData.append('id', lastPath)
   formData.append('file', file);
   formData.append('name', file.name);
   formData.append('project_name', name);
@@ -104,7 +109,6 @@ export const S_i = () => {
           </ul>
       </nav>
 
-
       <div
         className={`pdf-uploader ${file ? "disabled" : ""}`}
         onDrop={handleDrop}
@@ -120,7 +124,7 @@ export const S_i = () => {
          
           <>
             <p>Please drag and drop your work here</p>
-            <input className='namer' defaultValue="What is your project's name" onChange={(e) => setName(e.target.value)}/>
+            <input className='namer' placeholder="What is your project's name" onChange={(e) => setName(e.target.value)}/>
           </>
          
         )}
