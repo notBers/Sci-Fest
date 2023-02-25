@@ -9,6 +9,8 @@ export const S_i = () => {
   const [name, setName] = useState(null);
   const [exist, setExist] = useState(null);
   const location = useLocation()
+  const paths = location.pathname.split('/'); // Split the pathname by '/'
+  const lastPath = paths[paths.length - 1]; 
 
   const handleDrop = (event) => {
     event.preventDefault();
@@ -29,7 +31,7 @@ export const S_i = () => {
     alert('project deleted');
 
     const form = new FormData();
-    form.append('id', '2444')
+    form.append('id', lastPath)
 
     if(exist === true){
       const deletes = await fetch("http://localhost:3001/delete", {
@@ -47,7 +49,7 @@ export const S_i = () => {
   }
 
   const forms = new FormData();
-  forms.append('id', "2444")
+  forms.append('id', lastPath)
 
   try{
     const exists = await fetch("http://localhost:3001/haswork", {
@@ -69,8 +71,7 @@ export const S_i = () => {
     return
   }
 
-  const paths = location.pathname.split('/'); // Split the pathname by '/'
-  const lastPath = paths[paths.length - 1]; 
+
   
   const formData = new FormData();
   formData.append('id', lastPath)
@@ -96,15 +97,8 @@ export const S_i = () => {
     <>
       <nav>
           <a className="logo-container"><img src={Logo} alt="Logo" className="logo"/></a>
-          <input type="checkbox" id="nav-toggle" className="nav-toggle"/>
 
-          <label htmlFor="nav-toggle" className="burger-icon">
-              <span className="waza"></span>
-              <span className="waza"></span>
-              <span className="waza"></span>
-          </label>
-
-          <ul className="navbar-links navbar-active">
+          <ul className="navbar-active">
              <li><Link to={"/"}>{"<"}</Link></li>
           </ul>
       </nav>

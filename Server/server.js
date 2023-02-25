@@ -54,7 +54,7 @@ app.post('/upload', (req, res) => {
   
   const fileName = req.file.originalname;
 
-  const newProject = new project({id: req.body.id, name: req.body.project_name, path: "C:\\Users\\Propietario\\OneDrive\\Documentos\\pdf-files\\" + fileName});
+  const newProject = new project({id: req.body.id, name: req.body.project_name, path: "C:\\Users\\Propietario\\OneDrive\\Documentos\\pdf-files\\" + fileName, views: 0});
   newProject.save((err, document) => {
     if(err) console.log(err);
     console.log('new project Created' + document)
@@ -149,6 +149,55 @@ app.post('/projectinfo', (req, res) => {
   evaluation()
 
 });
+
+app.post('/downloadi', (req, res) => {
+  const evaluation = async () => {
+    try{
+      const files = await project.findOne({id: req.body.project})
+      res.download(files.path);
+    }catch{
+      res.json({message: "Index out of range"})
+    }
+  }
+
+  evaluation()
+
+});
+
+app.post('/projectinfi', (req, res) => {
+  const evaluation = async () => {
+    
+    try{
+      const files = await project.findOne({id: req.body.project})
+      res.json({user: files.id, name: files.name, views: files.views});
+    }catch(err){
+      console.log(err)
+      res.json({message: "Index out of range"})
+    }
+  }
+
+  evaluation()
+
+});
+
+app.post('/addbyone', (req, res) => {
+
+  const evaluation = async () => {
+    
+    try {
+      const files = await project.findOneAndUpdate({id: req.body.id}, {$inc: {views: 1}})
+      res.status(200)
+    } catch (error) {
+      res.status(400)
+    }
+
+  }
+
+  evaluation()
+
+
+  
+})
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

@@ -29,7 +29,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10%;
+    padding: 20px 10%;
     font-family: 'Open Sans', sans-serif;
     
   }
@@ -122,7 +122,7 @@
       align-items: flex-end;
       position: absolute;
       top: 100%;
-      width: 100%;
+      width: 50%;
       background: #0072ff;
       padding: 20px;
       border-radius: 0 0 10px 10px;
@@ -377,8 +377,17 @@ ul.slider li:target {
   margin: 10px
 }
 
-Link{
-  text-decoration: none
+a{
+  text-decoration: none;
+  color: rgb(78, 78, 234)
+}
+
+a:hover{
+  color: rgb(34, 34, 174)
+}
+
+a:active{
+  color: blue
 }
 
 iframe{

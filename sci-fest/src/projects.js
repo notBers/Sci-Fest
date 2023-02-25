@@ -30,20 +30,12 @@ export function DownloadFile() {
     <div>
       <nav>
           <a className="logo-container"><img src={Logo} alt="Logo" className="logo"/></a>
-          <input type="checkbox" id="nav-toggle" className="nav-toggle"/>
-
-          <label htmlFor="nav-toggle" className="burger-icon">
-              <span className="waza"></span>
-              <span className="waza"></span>
-              <span className="waza"></span>
-          </label>
-
-          <ul className="navbar-links navbar-active">
+          <ul className="navbar-active">
              <li><Link to={"/"}>{"<"}</Link></li>
           </ul>
       </nav>
       {fileUrl && (
-        <div className="con">{fileUrl?.map(dict => <Link to={"/jfj"} className="procontainer"><div className="up"><iframe src={dict.url} style={{ width: "100%", height: "500px" }}></iframe></div><div className="down"><h1>ID: {dict.id}</h1><h1>NAME: {dict.name}</h1><h1>VIEWS: {dict.views}</h1></div></Link>)}</div>     
+        <div className="con">{fileUrl?.map(dict => <Link to={"/projects/"+dict.id} className="procontainer"><div className="up"><iframe src={dict.url} style={{ width: "100%", height: "500px" }}></iframe></div><div className="down"><h1>ID: {dict.id}</h1><h1>NAME: {dict.name}</h1><h1>VIEWS: {dict.views}</h1></div></Link>)}</div>     
       )}
       </div>
   );

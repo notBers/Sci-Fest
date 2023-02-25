@@ -17,10 +17,8 @@ export function Main(){
                 </label>
 
                 <ul className="navbar-links navbar-active">
-                    <li><Link to={"/jdk"}>waza</Link></li>
-                    <li><Link to={"/jdk"}>waza</Link></li>
-                    <li><Link to={"/jdk"}>waza</Link></li>
-                    
+                    <li><Link to={"/login"}>login</Link></li>
+                    <li><Link to={"/projects"}>projects</Link></li>                    
                 </ul>
             </nav>
 

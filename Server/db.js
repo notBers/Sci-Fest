@@ -9,7 +9,7 @@ async function main() {
   await mongoose.connect('mongodb://localhost:27017/sci-fest');
 }
 
-let names = ["John", "Cindy", "Daniel"]
+let names = ["1", "2", "3"]
 
 let ids = [];
 
