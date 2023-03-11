@@ -21,6 +21,7 @@ export function Project() {
         const json = await response1.json()
         const pinfo = {url: fileUrls, name: json.name, id: json.user, views: json.views}
         setFileUrl(pinfo);
+        const addbyone = await fetch("http://localhost:3001/addbyone", {method: "POST", body: formData1})
     };
     fetchData();
   }, []);

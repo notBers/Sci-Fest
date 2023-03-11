@@ -6,7 +6,7 @@ const projects = new Schema({
     name: String,
     path: String,
     comments: Array,
-    views: String
+    views: Number
 })
 
 module.exports = model('projects', projects)

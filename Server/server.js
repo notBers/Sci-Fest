@@ -182,21 +182,17 @@ app.post('/projectinfi', (req, res) => {
 
 app.post('/addbyone', (req, res) => {
 
+
   const evaluation = async () => {
-    
-    try {
-      const files = await project.findOneAndUpdate({id: req.body.id}, {$inc: {views: 1}})
+      console.log(req.body.project)
+      const files = await project.findOneAndUpdate({id: req.body.project}, {$inc: {views: 1}})
+      console.log(files)
       res.status(200)
-    } catch (error) {
-      res.status(400)
-    }
 
   }
 
   evaluation()
 
-
-  
 })
 
 const port = process.env.PORT || 3001;
